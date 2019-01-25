@@ -1,7 +1,7 @@
 # TransaCTF
 A transaction based, adversarial CTF using Docker for modularity
 
-### NOTE - YOU MAY INCURE COSTS FROM THE CLOUD SERVICES. 
+# NOTE - YOU MAY INCURE COSTS FROM THE CLOUD SERVICES. 
 
 This is a robust CTF environment with at least three major parts, two (or more) team environments and a scorekeeper environment.
 
@@ -11,7 +11,7 @@ Each team will be provided access to the servers in their own environment, each 
 
 To make it more interesting each team doesn't necessarily have the same set of services. These will either be selected on initialization by the scorekeeper/provisioner or randomly selected. 
 
-## The goals of the CTF
+# The goals of the CTF
 The goal for each team is to keep the servers up and running with as little impact on availability and integrity within the data.
 Part of the idea is that most CTFs differ from "real life" in that they don't have any stakes around the integrity and availabity of the services provided. This does.
 
@@ -30,7 +30,7 @@ Note - It is recommended to provide lead time to allow each team to checkout and
 Note - There is a transparent load balancer as part of the configuration, so DoS attacks will impact each team equally, and therefore have less value.
 
 
-### How do I get set up? ###
+# How do I get set up?
 
 There is a point of chicken/egg. Either vagrant can be used to build a launch system, that will be used as a local point of initialization, or the scripts that this server uses can be launched locally. 
 
@@ -44,7 +44,7 @@ It can be set up, as is, with just the following commands:
 
 <setup goes here>
 
-## Summary of set up
+# Summary of set up
 
 For each instance there are several steps you will need to go through as setup. 
 
@@ -68,7 +68,7 @@ For example, the teams should, ideally, look through the source and find out wha
 
 Once the scorekeeper sets everything up, those teams will get the hostnames in the domain from the scorekeeper, and have to set up their DNS for monitoring. 
 
-## Configuration
+# Configuration
 
 The biggest part of this is the transaction and service monitoring. Since I wanted to leverage the awesomeness of Facebook's CTF scoreboard's Base properites I decided to have each transaction write out to a field.
 Then those flags are checked. That lets me keep everything check related on the scoring server. 
@@ -88,10 +88,10 @@ Dependencies
 
 
 
-### Contribution guidelines ###
+# Contribution guidelines
 
 * Ideally, once this is all set up, and the stacks are laid out people will be able to/want to submit containers and scenerios that fit in. I am totally on board with that. I will probably need to define/make it so that if another set of checks are to be done, they can easily fit in. I would love to work with anyone who has constructive ideas for this. 
 
-### Who do I talk to? ###
+# Who do I talk to?
 
 You can @ me @ClevelandJosh on Twitter or submit requests through here. 
