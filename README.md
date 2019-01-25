@@ -27,9 +27,6 @@ How the teams choose to do this is up to them, but be cautious not to impact upt
 
 Note - It is recommended to provide lead time to allow each team to checkout and script up solutions ahead of time. Not being online from the start counts against, so the faster a team can hit the ground running, the better for that team.
 
-Note - There is a transparent load balancer as part of the configuration, so DoS attacks will impact each team equally, and therefore have less value.
-
-
 # How do I get set up?
 
 There is a point of chicken/egg. Either vagrant can be used to build a launch system, that will be used as a local point of initialization, or the scripts that this server uses can be launched locally. 
