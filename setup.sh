@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 # ensure there is an interface with 
+
 # if not set one up with 
 # nmcli c modify ens3 ipv4.method auto
 # nmcli c down enp0s3
 # nmcli c up enp0s3
 
 set -e
+
+if [ -f /etc/redhat-release ]; 
+then
 
 full=`cat /etc/centos-release | tr -dc '0-9.'`
 major=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f1)
@@ -21,8 +25,6 @@ if [ $major \> 6 ];
 then 
 
 echo "running install"
-
-
 
 sudo yum install -y wget || echo "wget installation failed" 
 sudo yum -y check-update || echo "update failed"
@@ -44,3 +46,12 @@ ansible all -m ping --ask-pass
 else
     echo "CentOS needs to be at least version 7"
 fi
+
+else
+
+if [ -f /etc/lsb-release ]; then
+  apt-get update
+fi
+
+fi
+
