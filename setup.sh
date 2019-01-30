@@ -9,15 +9,22 @@
 set -e
 
 
-if [ -f /etc/centos-release ];
+if [[ -f /etc/centos-release && ! -h /etc/centos-release ]];
 then
 osrelease='centos'
+else
+echo "not CentOS"
 fi
+echo $osrelease
 
-if [ -f /etc/redhat-release ];
+if [[ -f /etc/redhat-release && ! -h /etc/redhat-release ]];
 then
 osrelease='redhat'
+else 
+echo "not RHEL"
 fi
+echo $osrelease
+
 
 full=`cat /etc/$osrelease-release | tr -dc '0-9.'`
 major=$(cat /etc/$osrelease-release | tr -dc '0-9.'|cut -d \. -f1)
@@ -43,13 +50,20 @@ sudo yum install -y python python-setuptools || echo "python installation failed
 
 sudo yum install -y boto boto3 || echo "boto installation failed" 
 sudo easy_install pip || echo "pip easy installation failed" 
+sudo pip install --upgrade pip
 sudo pip install paramiko PyYAML Jinja2 httplib2 || echo "pip installation failed" 
 sudo yum install -y sshpass || echo "sshpass installation failed"
 
+if [[ $osrelease == 'redhat' ]]
+then
+sudo subscription-manager clean
+sudo subscription-manager register
 sudo subscription-manager repos --enable rhel-7-server-ansible-2.6-rpms
+fi
+
 sudo yum install -y ansible
 
-ansible all -m ping --ask-pass
+# ansible all -m ping --ask-pass
 
 else
     echo "CentOS needs to be at least version 7"
@@ -60,5 +74,3 @@ else
 if [ -f /etc/lsb-release ]; then
   apt-get update
 fi
-
-
