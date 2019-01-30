@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+vagrant up --provider virtualbox
+vagrant ssh << EOF
 # ensure there is an interface with 
 
 # if not set one up with 
@@ -74,3 +77,5 @@ else
 if [ -f /etc/lsb-release ]; then
   apt-get update
 fi
+
+EOF
