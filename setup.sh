@@ -8,41 +8,26 @@
 
 set -e
 
-if [ -f /etc/redhat-release || -f /etc/centos-release ]; 
-then
 
 if [ -f /etc/centos-release ];
 then
 osrelease='centos'
+fi
 
 if [ -f /etc/redhat-release ];
 then
 osrelease='redhat'
+fi
 
 full=`cat /etc/$osrelease-release | tr -dc '0-9.'`
-major=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f1)
-minor=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f2)
-asynchronous=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f3)
+major=$(cat /etc/$osrelease-release | tr -dc '0-9.'|cut -d \. -f1)
+minor=$(cat /etc/$osrelease-release | tr -dc '0-9.'|cut -d \. -f2)
+asynchronous=$(cat /etc/$osrelease-release | tr -dc '0-9.'|cut -d \. -f3)
 
-echo CentOS Version: $full
+echo $osrelease Version: $full
 echo Major Relase: $major
 echo Minor Relase: $minor
 echo Asynchronous Relase: $asynchronous
-fi
-
-if [ -f /etc/redhat-release ];
-then
-full=`cat /etc/redhat-release | tr -dc '0-9.'`
-major=$(cat /etc/redhat-release | tr -dc '0-9.'|cut -d \. -f1)
-minor=$(cat /etc/redhat-release | tr -dc '0-9.'|cut -d \. -f2)
-asynchronous=$(cat /etc/redhat-release | tr -dc '0-9.'|cut -d \. -f3)
-
-echo CentOS Version: $full
-echo Major Relase: $major
-echo Minor Relase: $minor
-echo Asynchronous Relase: $asynchronous
-fi
-
 
 if [ $major \> 6 ];
 then 
@@ -76,5 +61,4 @@ if [ -f /etc/lsb-release ]; then
   apt-get update
 fi
 
-fi
 
