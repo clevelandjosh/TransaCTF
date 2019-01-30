@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+vagrant init centos/7
 vagrant up --provider virtualbox
 vagrant ssh << EOF
 # ensure there is an interface with 
