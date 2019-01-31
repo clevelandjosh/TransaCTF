@@ -1,6 +1,15 @@
 #!/usr/bin/env bash
 
-vagrant box add --provider=virtualbox -c --insecure centos/7
+if [ ! -e ~/CentOS7 ] 
+then
+mkdir ~/CentOS7
+cd ~/CentOS7
+else 
+echo "Can't create the CentOS7 directory, as one is already in place"
+exit
+fi
+
+vagrant box add --provider=virtualbox -c centos/7
 vagrant init centos/7
 vagrant up --provider virtualbox
 
