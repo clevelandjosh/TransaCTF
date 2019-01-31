@@ -8,10 +8,11 @@ else
 echo "Can't create the CentOS7 directory, as one is already in place"
 exit
 fi
+pwd
 
-vagrant box add --provider=virtualbox -c centos/7
+vagrant box add --provider=virtualbox centos/7
 vagrant init centos/7
-vagrant up --provider virtualbox
+vagrant up
 
 vagrant ssh << EOF
 # ensure there is an interface with 
