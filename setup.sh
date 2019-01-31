@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+vagrant box add --provider=virtualbox -c --insecure centos/7
 vagrant init centos/7
 vagrant up --provider virtualbox
+
 vagrant ssh << EOF
 # ensure there is an interface with 
 
