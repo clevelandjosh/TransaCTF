@@ -88,12 +88,6 @@ sudo easy_install pip || echo "pip easy installation failed"
 sudo pip install --upgrade pip
 sudo pip install paramiko PyYAML Jinja2 httplib2 || echo "pip installation failed" 
 sudo yum install -y sshpass || echo "sshpass installation failed"
-if [[ $osrelease == 'redhat' ]]
-then
-sudo subscription-manager clean
-sudo subscription-manager register
-sudo subscription-manager repos --enable rhel-7-server-ansible-2.6-rpms
-fi
 sudo yum install -y ansible
 # ansible all -m ping --ask-pass
 else
