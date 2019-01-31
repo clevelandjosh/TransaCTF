@@ -66,16 +66,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
 set -e
 
-full=`cat /etc/centos-release | tr -dc '0-9.'`
-major=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f1)
-minor=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f2)
-asynchronous=$(cat /etc/centos-release | tr -dc '0-9.'|cut -d \. -f3)
-echo $osrelease Version: $full
-echo Major Relase: $major
-echo Minor Relase: $minor
-echo Asynchronous Relase: $asynchronous
-if [ $major \> 6 ];
-then 
+
 echo "running install"
 sudo yum install -y wget || echo "wget installation failed" 
 sudo yum -y check-update || echo "update failed"
@@ -90,9 +81,6 @@ sudo pip install paramiko PyYAML Jinja2 httplib2 || echo "pip installation faile
 sudo yum install -y sshpass || echo "sshpass installation failed"
 sudo yum install -y ansible
 # ansible all -m ping --ask-pass
-else
-    echo "CentOS needs to be at least version 7"
-fi
 
   SHELL
 end
