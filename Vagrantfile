@@ -68,18 +68,33 @@ set -e
 
 
 echo "running install"
-sudo yum install -y wget || echo "wget installation failed" 
-sudo yum -y check-update || echo "update failed"
+echo "going to try to install wget"
+sudo yum install -y wget || echo "wget installation failed" ; exit
+echo "going to try to install check-update"
+sudo yum -y check-update || echo "update failed" ; exit
+echo "going to try to install gcc libffi-devel python-devel openssl-devel epel-release"
 sudo yum install -y gcc libffi-devel python-devel openssl-devel epel-release || echo "installation failed" 
-sudo yum install -y python-pip python-wheel || echo "installation failed" 
-sudo yum install -y git || echo "git installation failed" 
-sudo yum install -y python python-setuptools || echo "python installation failed" 
-sudo yum install -y boto boto3 || echo "boto installation failed" 
-sudo easy_install pip || echo "pip easy installation failed" 
+echo "going to try to install python-pip python-wheel"
+sudo yum install -y python-pip python-wheel || echo "installation failed" ; exit
+echo "going to try to install git"
+sudo yum install -y git || echo "git installation failed" ; exit
+echo "going to try to install python and python-setuptools"
+sudo yum install -y python python-setuptools || echo "python installation failed" ; exit
+echo "going to try to install boto and boto3"
+sudo yum install -y boto boto3 || echo "boto installation failed" ; exit
+echo "going to try to install pip"
+sudo easy_install pip || echo "pip easy installation failed" ; exit
+echo "going to try to upgrade pip"
 sudo pip install --upgrade pip
-sudo pip install paramiko PyYAML Jinja2 httplib2 || echo "pip installation failed" 
-sudo yum install -y sshpass || echo "sshpass installation failed"
-sudo yum install -y ansible
+echo "going to try to install paramiko PyYAML Jinja2 httplib2"
+sudo pip install paramiko PyYAML Jinja2 httplib2 || echo "pip installation failed" ; exit
+echo "going to try to install sshpass"
+sudo yum install -y sshpass || echo "sshpass installation failed" ; exit
+echo "going to try to install ansible"
+sudo yum install -y ansible || echo "ansible installation failed" ; exit
+git clone https://github.com/clevelandjosh/TransaCTF.git || echo "git clone failed, bombing out" ; exit
+cd TransaCTF/AWSsetup || echo "something went wrong, can't change into the TransaCTF directory that should have been created." 
+
 # ansible all -m ping --ask-pass
 
   SHELL
