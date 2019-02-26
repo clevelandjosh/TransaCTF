@@ -66,8 +66,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
 set -e
 
-
-echo "running install"
+exec 1>log.out 2>&1
+echo "running install" 
 echo "going to try to install wget"
 sudo yum install -y wget || echo "wget installation failed" ; exit
 echo "going to try to install check-update"
