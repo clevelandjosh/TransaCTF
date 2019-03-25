@@ -1,5 +1,5 @@
 {
-    "AWSTemplateFormatVersion": "2019-03-20",
+    "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "Based off the AWS CloudFormation Sample Template VPC_Single_Instance_In_Subnet: Creates a VPC and several EC2 instances the edge with an Elastic IP address while the internal EC2s are not public accessible but are assigned a subnet and a security group. **WARNING** This template creates an Amazon EC2 instance. You will be billed for the AWS resources used if you create a stack from this template.",
     "Parameters": {
         "InstanceType": {
@@ -894,7 +894,7 @@
                 }
             }
         },
-        "VPNServerInstance": {
+        "WebServerInstance": {
             "Type": "AWS::EC2::Instance",
             "DependsOn": "AttachGateway",
             "Metadata": {
@@ -967,7 +967,7 @@
                                             {
                                                 "Ref": "AWS::StackName"
                                             },
-                                            "         --resource VPNServerInstance ",
+                                            "         --resource WebServerInstance ",
                                             "         --region ",
                                             {
                                                 "Ref": "AWS::Region"
@@ -1091,7 +1091,7 @@
                 }
             }
         },
-        "ScoreboardACL": {
+        "ScoreboardAcl": {
             "Type": "AWS::EC2::NetworkAcl",
             "Properties": {
                 "VpcId": {
@@ -1108,7 +1108,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "ScoreboardACL"
+                    "Ref": "ScoreboardAcl"
                 }
             },
             "Metadata": {
@@ -1121,7 +1121,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "ScoreboardACL"
+                    "Ref": "ScoreboardAcl"
                 }
             },
             "Metadata": {
@@ -1134,7 +1134,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "ScoreboardACL"
+                    "Ref": "ScoreboardAcl"
                 }
             },
             "Metadata": {
@@ -1189,7 +1189,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "ScoreboardACL"
+                    "Ref": "ScoreboardAcl"
                 }
             },
             "Metadata": {
@@ -1202,7 +1202,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "ScoreboardACL"
+                    "Ref": "ScoreboardAcl"
                 }
             },
             "Metadata": {
@@ -1215,7 +1215,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "ScoreboardACL"
+                    "Ref": "ScoreboardAcl"
                 }
             },
             "Metadata": {
@@ -1224,7 +1224,7 @@
                 }
             }
         },
-        "TeamsACL": {
+        "TeamsAcl": {
             "Type": "AWS::EC2::NetworkAcl",
             "Properties": {
                 "VpcId": {
@@ -1280,10 +1280,10 @@
             ]
         },
         "TeamsOutBoundResponsePortsNetworkAclEntry": {
-            "Type": "AWS::EC2::ScoreboardOutBoundResponsePortsNetworkAclEntryNetworkAclEntry",
+            "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "ScoreboardACL"
+                    "Ref": "TeamsAcl"
                 }
             },
             "Metadata": {
@@ -1296,7 +1296,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "TeamsACL"
+                    "Ref": "TeamsAcl"
                 }
             },
             "Metadata": {
@@ -1309,7 +1309,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "TeamsACL"
+                    "Ref": "TeamsAcl"
                 }
             },
             "Metadata": {
@@ -1322,7 +1322,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "TeamsACL"
+                    "Ref": "TeamsAcl"
                 }
             },
             "Metadata": {
@@ -1335,7 +1335,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "TeamsACL"
+                    "Ref": "TeamsAcl"
                 }
             },
             "Metadata": {
@@ -1348,7 +1348,7 @@
             "Type": "AWS::EC2::NetworkAclEntry",
             "Properties": {
                 "NetworkAclId": {
-                    "Ref": "TeamsACL"
+                    "Ref": "TeamsAcl"
                 }
             },
             "Metadata": {
