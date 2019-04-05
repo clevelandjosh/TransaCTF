@@ -754,21 +754,36 @@
         },
         "ScoreboardElasticIP": {
             "Type": "AWS::EC2::EIP",
-            "Properties": {},
+            "Properties": {
+                    "Domain" : "vpc"
+            },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "32734057-0b2f-484c-b53e-7cdb3824b044"
                 }
             }
         },
-        "NATgateway": {
-            "Type": "AWS::EC2::NatGateway",
-            "Properties": {},
+         "NATgateway" : {
+            "DependsOn" : "VPCGatewayAttach",
+            "Type" : "AWS::EC2::NatGateway",
+            "Properties" : {
+            "AllocationId" : { "Fn::GetAtt" : ["EIP", "AllocationId"]},
+            "SubnetId" : { "Ref" : "Subnet"},
+            "Tags" : [ {"Key" : "foo", "Value" : "bar" } ]
+                 }
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "0140bb36-82d6-408f-94f9-379fc528b8ca"
                 }
             }
-        }
+           },
+           "Route" : {
+               "Type" : "AWS::EC2::Route",
+               "Properties" : {
+               "RouteTableId" : { "Ref" : "RouteTable" },
+               "DestinationCidrBlock" : "0.0.0.0/0",
+               "NatGatewayId" : { "Ref" : "NAT" }
+              }
+            }
     }
 }
