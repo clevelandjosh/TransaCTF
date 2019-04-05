@@ -572,9 +572,10 @@
         "TeamSubnet": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "VpcId": {
-                    "Ref": "TransaCTFVPC"
-                }
+                "VpcId": { "Ref": "TransaCTFVPC" },
+                 "CidrBlock" : "10.2.0.0/24",
+                "AvailabilityZone" : "us-east-1a",
+                "Tags" : [ { "Key" : "foo", "Value" : "bar" } ]
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -701,9 +702,10 @@
         "ScoreboardSubnet": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "VpcId": {
-                    "Ref": "TransaCTFVPC"
-                }
+                "VpcId": { "Ref": "TransaCTFVPC" },
+                "CidrBlock" : "10.0.0.0/24",
+                "AvailabilityZone" : "us-east-1a",
+                "Tags" : [ { "Key" : "foo", "Value" : "bar" } ]
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
@@ -714,9 +716,10 @@
         "VPNSubnet": {
             "Type": "AWS::EC2::Subnet",
             "Properties": {
-                "VpcId": {
-                    "Ref": "TransaCTFVPC"
-                }
+                "VpcId": { "Ref": "TransaCTFVPC" },
+                 "CidrBlock" : "10.0.1.0/24",
+                "AvailabilityZone" : "us-east-1a",
+                "Tags" : [ { "Key" : "foo", "Value" : "bar" } ]
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
