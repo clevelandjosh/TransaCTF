@@ -3,12 +3,13 @@
 echo "Lets get this party started!"
 echo "We need some base information to set this up"
 echo "pick an environment to build in. Your only option is:"
-echo "1. AWS, so we won't even bother to ask which you choose, but to set this up we need you to"
+echo "1. AWS, so we won't even bother to ask which you choose, but to set this up we need you to do the following"
+echo "If you mess up, hit Cntl-c to break the setup script. You will need to rerun this script if you do."
+
+echo "Lets check that vagrant is installed."
 
 echo "Please enter your aws_access_key, which will get stored in a vault on the vagrant server"
-echo "If you mess up, hit Cntl-c to break the setup script. You will need to rerun this script if you do."
 read aws_access_key
-
 
 echo "Please enter your aws_secret_key, which will get stored in a vault on the vagrant server"
 read aws_secret_key
